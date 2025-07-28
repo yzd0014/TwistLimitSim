@@ -2,8 +2,8 @@
 
 ## Instructions to Run
 1. Open with Visual Studio 2022, the code was tested with Windows SDK version 10.0.22000.0.
-2. Go to Solution Explorer, right click "BallJointSim", choose "Set as Startup Project".
-3. Select "Properties", choose "Debugging", the commmand arguments are explained down below.
+2. Go to Solution Explorer, right click `BallJointSim`, choose `Set as Startup Project`.
+3. Then select `Properties` for `BallJointSim`, choose `Debugging`, the commmand arguments are explained down below.
 - **-console**
   - `0`: disable console terminal window  
   - `1`: enable console terminal window 
