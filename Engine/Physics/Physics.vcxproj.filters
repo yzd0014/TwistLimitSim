@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="sRigidBodyState.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="PhysicsSimulation.cpp" />
+    <ClCompile Include="CollisionResolver.cpp" />
+    <ClCompile Include="PointJoint.cpp" />
+    <ClCompile Include="HingeJoint.cpp" />
+    <ClCompile Include="CollisionHelpers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sRigidBodyState.h" />
+    <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="PhysicsSimulation.h" />
+    <ClInclude Include="CollisionPair.h" />
+    <ClInclude Include="CollisionResolver.h" />
+    <ClInclude Include="PointJoint.h" />
+    <ClInclude Include="HingeJoint.h" />
+    <ClInclude Include="CollisionHelpers.h" />
+  </ItemGroup>
+</Project>
