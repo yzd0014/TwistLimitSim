@@ -72,6 +72,33 @@ void sca2025::MultiBody::UnitTest5_4b()
 	qdot.segment(0, 3) = world_w;
 	Forward();
 	ConfigureSingleBallJoint(0, _Vector3(0, -1, 0), _Vector3(1, 0, 0), -1, 0.5 * M_PI);
+
+	m_HoudiniSave = [this](int frames_number)
+	{
+		LOG_TO_FILE << frames_number << ",";
+		for (int i = 0; i < numOfLinks; i++)
+		{
+			_Vector3 vecRot = Math::RotationConversion_QuatToVec(obs_ori[i]);
+			_Scalar rotAngle = vecRot.norm();
+			if (abs(rotAngle) < 1e-8)
+			{
+				vecRot = _Vector3(1, 0, 0);
+			}
+			else
+			{
+				vecRot = vecRot / rotAngle;
+			}
+			LOG_TO_FILE << pos[i](0) << "," << pos[i](1) << "," << pos[i](2) << "," << vecRot(0) << "," << vecRot(1) << "," << vecRot(2) << "," << rotAngle;
+			if (i != numOfLinks - 1)
+			{
+				LOG_TO_FILE << ",";
+			}
+			else
+			{
+				LOG_TO_FILE << std::endl;
+			}
+		}
+	};
 }
 
 void sca2025::MultiBody::UnitTest5_2()
@@ -470,6 +497,33 @@ void sca2025::MultiBody::UnitTest0()
 	qdot.segment(0, 3) = world_w;
 	Forward();
 	ConfigureSingleBallJoint(0, _Vector3(0, -1, 0), _Vector3(-1, 0, 0), 0.5 * M_PI, 1e-6);
+
+	m_HoudiniSave = [this](int frames_number)
+	{
+		LOG_TO_FILE << frames_number << ",";
+		for (int i = 0; i < numOfLinks; i++)
+		{
+			_Vector3 vecRot = Math::RotationConversion_QuatToVec(obs_ori[i]);
+			_Scalar rotAngle = vecRot.norm();
+			if (abs(rotAngle) < 1e-8)
+			{
+				vecRot = _Vector3(1, 0, 0);
+			}
+			else
+			{
+				vecRot = vecRot / rotAngle;
+			}
+			LOG_TO_FILE << pos[i](0) << "," << pos[i](1) << "," << pos[i](2) << "," << vecRot(0) << "," << vecRot(1) << "," << vecRot(2) << "," << rotAngle;
+			if (i != numOfLinks - 1)
+			{
+				LOG_TO_FILE << ",";
+			}
+			else
+			{
+				LOG_TO_FILE << std::endl;
+			}
+		}
+	};
 }
 
 void sca2025::MultiBody::RunUnitTest()

@@ -142,7 +142,7 @@ void sca2025::MultiBody::Tick(const double i_secondCountToIntegrate)
 		frameNum = 250;
 		animationDuration = (frameNum - 1) * (1.0 / 24.0);;
 		//SaveDataToHoudini(0, 0.1, 690);
-		//SaveDataToHoudini(animationDuration, -1, frameNum);
+		//SaveDataToHoudini(6, -1, 150);
 	}
 	
 	ResetExternalForces();
@@ -904,7 +904,7 @@ void sca2025::MultiBody::SaveDataToHoudini(_Scalar totalDuration, _Scalar logInt
 			{
 				m_HoudiniSave(frames_saved);
 			}
-			targetTime = logInterval * frames_saved;
+			targetTime = interval * frames_saved;
 		}
 	}
 	else
