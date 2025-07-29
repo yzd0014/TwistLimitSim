@@ -47,7 +47,7 @@
 
 ![](Images/arguments.png)
 
-5. Now you can compile and run.
+5. For build configurations, choose either `Debug` or `Release`, choose `x64` platform. Now you can compile and run.
 6. (optional) Copy `setting.ini` under `TwistLimitSim\Simulation_` to `TwistLimitSim\temp\x64\Debug(Release)\Simulation_`, you can change the rendering resolution by modfiying `setting.ini`.
 Note, folder `temp` will only exist after the soltuion was build first.
 
@@ -60,5 +60,5 @@ Note, folder `temp` will only exist after the soltuion was build first.
 ## Code Overview
 1. Twist limit is implmented under `TwistLimitSim\Simulation_\BallJointSim\JointLimit.cpp`.
 2. Equations of motions for the ball joint in generalized cooridiantes is implmented under `TwistLimitSim\Simulation_\BallJointSim\MultiBody.cpp`.
-3. Simulation dt can be changed in `TwistLimitSim\Engine\Application\cbApplication.h` by searching function `virtual double GetSimulationUpdatePeriod_inSeconds()`, default value is 1/1000.
+3. Simulation dt can be changed in `TwistLimitSim\Engine\Application\cbApplication.h` by searching function `virtual double GetSimulationUpdatePeriod_inSeconds()`, the default value is 1/1000.
     
