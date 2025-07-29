@@ -47,8 +47,8 @@
 
 ![](Images/arguments.png)
 
-5. For build configurations, choose either `Debug` or `Release`, choose `x64` platform. Now you can compile and run.
-6. (optional) Copy `setting.ini` under `TwistLimitSim\Simulation_` to `TwistLimitSim\temp\x64\Debug(Release)\Simulation_`, you can change the rendering resolution by modfiying `setting.ini`.
+5. For build configurations, choose either `Debug` or `Release`, choose `x64` for the platform. Now you can compile and run.
+6. (Optional) Copy `setting.ini` under `TwistLimitSim\Simulation_` to `TwistLimitSim\temp\x64\Debug(Release)\Simulation_`, you can change the rendering resolution by modfiying `setting.ini`.
 Note, folder `temp` will only exist after the soltuion was build first.
 
 ## Control Instructions
