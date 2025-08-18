@@ -283,7 +283,7 @@ void sca2025::MultiBody::ComputeTwistDirectJacobian(int jointNum, int i_limitTyp
 		_Vector3 t_rotated = R_local[i] * twistAxis[i];
 		_Vector3 s = twistAxis[i].cross(t_rotated);
 		_Matrix M;
-		M = Math::ToSkewSymmetricMatrix(twistAxis[jointNum]) * Math::ToSkewSymmetricMatrix(t_rotated);
+		M = Math::ToSkewSymmetricMatrix(twistAxis[i]) * Math::ToSkewSymmetricMatrix(t_rotated);
 
 		_Matrix T0;
 		_Vector3 s_rotated = R_local[i] * s;
@@ -297,7 +297,7 @@ void sca2025::MultiBody::ComputeTwistDirectJacobian(int jointNum, int i_limitTyp
 	else
 	{
 		_Vector3 p = Math::GetOrthogonalVector(twistAxis[i]);
-		o_J = ((R_local[jointNum] * p).cross(p)).transpose();
+		o_J = ((R_local[i] * p).cross(p)).transpose();
 	}
 }
 
