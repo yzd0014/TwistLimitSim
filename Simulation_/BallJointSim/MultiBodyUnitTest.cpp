@@ -582,13 +582,13 @@ void sca2025::MultiBody::RunUnitTest()
 	else if (testCaseNum == 5)
 	{
 		UnitTest5_4a();
-		twistMode = EULER_V2;
+		//twistMode = EULER_V2;
 		std::cout << "basic intial conditions to verify Euler twist constraint (induced swing)" << std::endl;
 	}
 	else if (testCaseNum == 6)
 	{
 		UnitTest5_4b();
-		twistMode = EULER_V2;
+		//twistMode = EULER_V2;
 		std::cout << "basic intial conditions to verify Euler twist constraint (no induced swing)" << std::endl;
 	}
 	else if (testCaseNum == 7)
