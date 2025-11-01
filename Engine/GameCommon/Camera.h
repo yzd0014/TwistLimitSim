@@ -34,6 +34,7 @@ namespace sca2025 {
 			float m_z_farPlane;
 
 			uint64_t tickCount_keyIsDown;
+			static bool mousePressedLastFrame;
 		private:
 			void UpdateCameraOrientation(const float i_secondCountToIntegrate);
 		};

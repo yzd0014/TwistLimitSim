@@ -163,39 +163,42 @@ void sca2025::UserInput::GetCursorPositionInWindow(int* o_x, int* o_y)
 	*o_y = (int)Pos[0].y;
 }
 
-void sca2025::UserInput::ConfineCursorWithinWindow()
+void sca2025::UserInput::ConfineCursorWithinWindow(POINT i_pos[])
 {
 	//get window size
 	RECT rcClient;
 	GetClientRect(mainWindow, &rcClient);
 	int width = rcClient.right;
 	int height = rcClient.bottom;
-	
+
 	//clamp cursor position
-	POINT Pos[1];
-	GetCursorPos(Pos);
-	ScreenToClient(mainWindow, Pos);
-	if (Pos[0].x < 0)
+	ScreenToClient(mainWindow, i_pos);
+	bool wraping = false;
+	if (i_pos[0].x < 0)
 	{
-		Pos[0].x = width;
+		i_pos[0].x = width;
+		wraping = true;
 	}
-	else if (Pos[0].x > width)
+	else if (i_pos[0].x > width)
 	{
-		Pos[0].x = 0;
+		i_pos[0].x = 0;
+		wraping = true;
 	}
-	if (Pos[0].y < 0)
+	if (i_pos[0].y < 0)
 	{
-		Pos[0].y = height;
+		i_pos[0].y = height;
+		wraping = true;
 	}
-	else if (Pos[0].y > height)
+	else if (i_pos[0].y > height)
 	{
-		Pos[0].y = 0;
+		i_pos[0].y = 0;
+		wraping = true;
 	}
-	ClientToScreen(mainWindow, Pos);
-	MouseMovement::xPosCached = Pos[0].x;
-	MouseMovement::yPosCached = Pos[0].y;
-	SetCursorPos(Pos[0].x, Pos[0].y);
-	//std::cout << Pos[0].x << ", " << Pos[0].y << std::endl;
+	ClientToScreen(mainWindow, i_pos);
+	if (wraping)
+	{
+		SetCursorPos(i_pos[0].x, i_pos[0].y);
+	}
 }
 
 void sca2025::UserInput::GetCursorDisplacementSinceLastCall(int * o_xTravel, int * o_yTravel)
@@ -204,24 +207,26 @@ void sca2025::UserInput::GetCursorDisplacementSinceLastCall(int * o_xTravel, int
 	GetCursorPos(screenPos);
 
 	int currentX = (int)screenPos[0].x;
-	if (MouseMovement::xPosCached == -99999) 
+	if (MouseMovement::xPosCached == -99999)
 	{
 		*o_xTravel = 0;
 	}
-	else 
+	else
 	{
 		*o_xTravel = currentX - MouseMovement::xPosCached;
 	}
-	MouseMovement::xPosCached = currentX;
 
 	int currentY = (int)screenPos[0].y;
-	if (MouseMovement::yPosCached == -99999) 
+	if (MouseMovement::yPosCached == -99999)
 	{
 		*o_yTravel = 0;
 	}
-	else 
+	else
 	{
 		*o_yTravel = currentY - MouseMovement::yPosCached;
 	}
-	MouseMovement::yPosCached = currentY;
+
+	ConfineCursorWithinWindow(screenPos);
+	MouseMovement::xPosCached = (int)screenPos[0].x;
+	MouseMovement::yPosCached = (int)screenPos[0].y;
 }
