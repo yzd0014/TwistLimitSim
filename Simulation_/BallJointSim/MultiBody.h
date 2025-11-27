@@ -155,6 +155,7 @@ namespace sca2025
 		_Scalar totalEnergy0 = 0;
 		_Vector3 angularMomentum0;
 		_Vector3 linearMomentum0;
+		_Vector3 gravity_coeff;
 		//_Vector conservedQuantity;
 
 		int tickCountSimulated = 0;

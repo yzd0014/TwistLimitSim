@@ -14,7 +14,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommand>$(GameInstallDir)$(TargetFileName)</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments>-console 1 -rm 1 -example 6 -tm 0 -ps 1 -damping 1</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-console 1 -rm 1 -example 9 -tm 0 -ps 1 -damping 1</LocalDebuggerCommandArguments>
     <LocalDebuggerWorkingDirectory>$(GameInstallDir)</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>

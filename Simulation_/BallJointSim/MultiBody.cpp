@@ -94,6 +94,9 @@ void sca2025::MultiBody::MultiBodyInitialization()
 		eulerDecompositionOffsetMat[i] = deformationGradient;
 		eulerDecompositionOffset[i] = Math::RotationConversion_MatToQuat(deformationGradient);
 	}
+	if (gravity) gravity_coeff = _Vector3(0.0, -9.81, 0.0);
+	else gravity_coeff.setZero();
+
 	Math::NativeVector2EigenVector(m_State.position, jointPos[0]);
 	Mr.resize(totalVelDOF, totalVelDOF);
 	q.resize(totalPosDOF);
@@ -375,19 +378,18 @@ _Vector sca2025::MultiBody::ComputeQr_SikpVelocityUpdate(_Vector& i_qdot)
 	Qr.setZero();
 	for (int i = 0; i < numOfLinks; i++)
 	{
-		if (gravity)
-		{
-			_Scalar g = -9.8;
-			externalForces[i].block<3, 1>(0, 0) = externalForces[i].block<3, 1>(0, 0) + _Vector3(0.0f, g, 0.0f);
-		}
 		_Vector Fv;
 		Fv.resize(6);
 		Fv.setZero();
 		Fv.block<3, 1>(3, 0) = -w_abs_world[i].cross(Mbody[i].block<3, 3>(3, 3) * w_abs_world[i]);
+		_Vector Fe;
+		Fe.resize(6);
+		Fe.setZero();
+		Fe.block<3, 1>(0, 0) = externalForces[i].block<3, 1>(0, 0) + gravity_coeff;
 		_Vector Q_temp;
 		Q_temp.resize(totalVelDOF);
 		Q_temp.setZero();
-		Q_temp = Ht[i].transpose() * (externalForces[i] + Fv - Mbody[i] * gamma_t[i]);
+		Q_temp = Ht[i].transpose() * (Fe + Fv - Mbody[i] * gamma_t[i]);
 		Qr = Qr + Q_temp;
 	}
 
